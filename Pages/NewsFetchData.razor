@@ -11,7 +11,7 @@
         border-style: dotted;
     }
 </style>
-@if (todoItems == null)
+@if (query.todoItems == null)
 {
     <p><em>Loading ...</em></p>
 }
@@ -27,9 +27,9 @@ else
         <form>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Filter Source</label>
-                <select @bind="filter" class="form-control" id="exampleFormControlSelect1">
+                <select @bind="query.filter" class="form-control" id="exampleFormControlSelect1">
                     <option value=" ">All</option>
-                    @foreach (var item in SourceList())
+                    @foreach (var item in query.SourceList())
                     {
 
                         <option>@item</option>
@@ -44,21 +44,21 @@ else
     {
 
 
-        @if (todoItems.articles.Count == 0)
+        @if (query.todoItems.articles.Count == 0)
         {
 
             <p>Nothing found</p>
         }
         else
         {
-            <button @onclick="() => SortDateByDateAscending()">Ascending</button>
-            <button @onclick="() => SortDateByDateDescending()">Descending</button>
+            <button @onclick="() => query.SortDateByDateAscending()">Ascending</button>
+            <button @onclick="() => query.SortDateByDateDescending()">Descending</button>
             <br />
             <br/>
 
-            foreach (var article in todoItems.articles)
+            foreach (var article in query.todoItems.articles)
             {
-                if (filterArticle(article))
+                if (article.filterArticle(query.filter))
                 {
                 <div class="dot">
                     <div><h5><strong>Source : </strong> @article.source.name</h5></div>
@@ -78,10 +78,11 @@ else
         }
 }
 @code {
-    private string filter { get; set; }
-    private Root todoItems;
+   
     private string errormessage;
     private bool found;
+
+    NewsQueryData query= new NewsQueryData();
 
     public string name { get; set; } = "sports";
 
@@ -92,7 +93,7 @@ else
         {
             string uri = "https://newsapi.org/v2/everything?q=" + name + "&apiKey=f74374b084a74f87a9c6270128e9962e";
 
-            todoItems = await Http.GetFromJsonAsync<Root>(uri);
+            query.todoItems = await Http.GetFromJsonAsync<Root>(uri);
             found = true;
             errormessage = String.Empty;
         }
@@ -108,42 +109,6 @@ else
     }
 
 
-    public HashSet<String> SourceList()
-    {
-        return todoItems.articles.Select(e => e.source.name).ToHashSet();
-    }
-
-    public bool filterArticle(Article article ){
-
-        Console.WriteLine(filter);
-
-        if (string.IsNullOrWhiteSpace(filter)) {
-
-            return true;
-
-        }
-
-        if (article.source.name.Equals(filter))
-        {
-            return true;
-        }
-
-        return false;
-
-    }
-
-  
-
-    public void SortDateByDateAscending()
-    {
-        todoItems.articles = todoItems.articles.OrderBy(e => e.publishedAt).ToList();
-    }
-
-    public void SortDateByDateDescending()
-    {
-        todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
-    }
-
     public async Task PressEnter(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
@@ -152,7 +117,5 @@ else
         }
     }
 
-
-   
 
 }

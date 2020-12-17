@@ -4,8 +4,14 @@ using System.Collections.Generic;
 namespace CA3_BlazorApp
 {
 
-    public class Source
+
+    public class dataLogic {
+
+        public void addMmbers() { }
+}
+        public class Source
     {
+        
         public string id { get; set; }
         public string name { get; set; }
     }
@@ -20,6 +26,27 @@ namespace CA3_BlazorApp
         public string urlToImage { get; set; }
         public DateTime publishedAt { get; set; }
         public string content { get; set; }
+        
+
+          public bool filterArticle(string filter)
+        {
+
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+
+                return true;
+
+            }
+
+            if (source.name.Equals(filter))
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
     }
 
     public class Root
@@ -28,4 +55,7 @@ namespace CA3_BlazorApp
         public int totalResults { get; set; }
         public List<Article> articles { get; set; }
     }
+
+
+
 }

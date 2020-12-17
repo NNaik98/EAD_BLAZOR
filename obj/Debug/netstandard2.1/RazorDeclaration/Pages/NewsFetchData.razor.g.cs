@@ -93,10 +93,11 @@ using System.Runtime.Serialization;
 #nullable restore
 #line 80 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
        
-    private string filter { get; set; }
-    private Root todoItems;
+   
     private string errormessage;
     private bool found;
+
+    NewsQueryData query= new NewsQueryData();
 
     public string name { get; set; } = "sports";
 
@@ -107,7 +108,7 @@ using System.Runtime.Serialization;
         {
             string uri = "https://newsapi.org/v2/everything?q=" + name + "&apiKey=f74374b084a74f87a9c6270128e9962e";
 
-            todoItems = await Http.GetFromJsonAsync<Root>(uri);
+            query.todoItems = await Http.GetFromJsonAsync<Root>(uri);
             found = true;
             errormessage = String.Empty;
         }
@@ -123,42 +124,6 @@ using System.Runtime.Serialization;
     }
 
 
-    public HashSet<String> SourceList()
-    {
-        return todoItems.articles.Select(e => e.source.name).ToHashSet();
-    }
-
-    public bool filterArticle(Article article ){
-
-        Console.WriteLine(filter);
-
-        if (string.IsNullOrWhiteSpace(filter)) {
-
-            return true;
-
-        }
-
-        if (article.source.name.Equals(filter))
-        {
-            return true;
-        }
-
-        return false;
-
-    }
-
-  
-
-    public void SortDateByDateAscending()
-    {
-        todoItems.articles = todoItems.articles.OrderBy(e => e.publishedAt).ToList();
-    }
-
-    public void SortDateByDateDescending()
-    {
-        todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
-    }
-
     public async Task PressEnter(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
@@ -167,8 +132,6 @@ using System.Runtime.Serialization;
         }
     }
 
-
-   
 
 
 #line default
