@@ -6,7 +6,12 @@
 
 <h1>News API</h1>
 
-
+<style>
+    .dot {
+        border-style:dotted;
+        
+    }
+</style>
 @if (todoItems == null)
 {
     <p><em>Loading ...</em></p>
@@ -35,7 +40,38 @@ else
         else
         {
 
-            @foreach (var article in todoItems.articles)
+           
+                
+                   
+                        @*<th>Source</th>*@
+                       @* <th>Author</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Published Date</th>
+                        <th>Content</th>
+                        <th>URL</th>*@
+                 
+               
+                    @foreach (var article in todoItems.articles)
+                    {
+<div class="dot">
+
+
+    <div><h5><strong>Source : </strong> @article.author</h5></div>
+    <div><h5><strong>Publish Date : </strong> @article.publishedAt.ToShortDateString()</h5> </div>
+    <div><h5> <strong>Title :</strong> @article.title</h5></div>
+    <div><h5><strong>Description :</strong> @article.description </h5></div>
+
+    <div><h5><strong>Content : </strong> @article.content</h5></div>
+    <div><h5><strong>Urls : </strong><a href="@article.url">Link to Article</a></h5></div>
+
+</div>
+<br />
+                    }
+            
+
+        }
+           @* @foreach (var article in todoItems.articles)
             {
 
 
@@ -51,8 +87,8 @@ else
                 </div><div>
                     URL : @article.publishedAt.ToString();
 
-                </div>      }
-        }
+                </div>  }
+        }*@
     }
 }
 

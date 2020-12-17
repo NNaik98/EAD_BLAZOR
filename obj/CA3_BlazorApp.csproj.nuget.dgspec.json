@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nitesh Naik\\source\\repos\\CA3_BlazorApp\\CA3_BlazorApp.csproj": {}
+    "N:\\College\\EAD\\EAD_BLAZOR\\CA3_BlazorApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nitesh Naik\\source\\repos\\CA3_BlazorApp\\CA3_BlazorApp.csproj": {
+    "N:\\College\\EAD\\EAD_BLAZOR\\CA3_BlazorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nitesh Naik\\source\\repos\\CA3_BlazorApp\\CA3_BlazorApp.csproj",
+        "projectUniqueName": "N:\\College\\EAD\\EAD_BLAZOR\\CA3_BlazorApp.csproj",
         "projectName": "CA3_BlazorApp",
-        "projectPath": "C:\\Users\\Nitesh Naik\\source\\repos\\CA3_BlazorApp\\CA3_BlazorApp.csproj",
+        "projectPath": "N:\\College\\EAD\\EAD_BLAZOR\\CA3_BlazorApp.csproj",
         "packagesPath": "C:\\Users\\Nitesh Naik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nitesh Naik\\source\\repos\\CA3_BlazorApp\\obj\\",
+        "outputPath": "N:\\College\\EAD\\EAD_BLAZOR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "N:\\Microsoft\\Xamarin\\NuGet\\"
