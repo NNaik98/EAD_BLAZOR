@@ -1,0 +1,121 @@
+﻿@page "/newsfetch"
+@inject HttpClient Http;
+
+
+@using System.Runtime.Serialization;
+
+<h1>News API</h1>
+
+
+@if (todoItems == null)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+
+
+    <div>
+        <label for="name">News Name</label>
+        <input id="name" @bind="name" /> <button @onclick="GetNewsAsync">Lookup</button>
+        <p></p>
+    </div>
+
+    <br />
+    @if (found)
+    {
+
+
+        @if (todoItems.articles.Count == 0)
+        {
+
+
+            <p>Nothing found</p>
+        }
+        else
+        {
+
+            @foreach (var article in todoItems.articles)
+            {
+
+
+                <div>
+                    Source : @article.source.name
+
+                </div><div>
+                    Title : @article.title
+
+                </div><div>
+                    URL : @article.url
+
+                </div><div>
+                    URL : @article.publishedAt.ToString();
+
+                </div>      }
+        }
+    }
+}
+
+
+
+
+
+
+@code {
+    private Root todoItems;
+
+    private string errormessage;
+    private bool found;
+
+    public string name { get; set; } = "sports";
+
+    public async Task GetNewsAsync()
+    {
+        found = false;
+        try
+        {
+            string uri = "https://newsapi.org/v2/everything?q=" + name + "&apiKey=f74374b084a74f87a9c6270128e9962e";
+
+            todoItems = await Http.GetFromJsonAsync<Root>(uri);
+            found = true;
+            errormessage = String.Empty;
+        }
+        catch (Exception e)
+        {
+            errormessage = e.Message;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetNewsAsync();
+    }
+
+
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class Source
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Article
+    {
+        public Source source { get; set; }
+        public string author { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public string url { get; set; }
+        public string urlToImage { get; set; }
+        public DateTime publishedAt { get; set; }
+        public string content { get; set; }
+    }
+
+    public class Root
+    {
+        public string status { get; set; }
+        public int totalResults { get; set; }
+        public List<Article> articles { get; set; }
+    }
+
+}
