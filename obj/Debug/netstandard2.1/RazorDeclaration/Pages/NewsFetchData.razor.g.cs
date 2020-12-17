@@ -91,10 +91,10 @@ using System.Runtime.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 100 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
+#line 76 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
        
     private Root todoItems;
-
+    private bool sortAscendingOrDescending;
     private string errormessage;
     private bool found;
 
@@ -120,6 +120,24 @@ using System.Runtime.Serialization;
     protected override async Task OnInitializedAsync()
     {
         await GetNewsAsync();
+    }
+
+
+    public HashSet<String> SourceList()
+    {
+        return todoItems.articles.Select(e => e.source.name).ToHashSet();
+    }
+
+
+
+    public void SortDateByDateAscending()
+    {
+        todoItems.articles = todoItems.articles.OrderBy(e => e.publishedAt).ToList();
+    }
+
+    public void SortDateByDateDescending()
+    {
+        todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
     }
 
 

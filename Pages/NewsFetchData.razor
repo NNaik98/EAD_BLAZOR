@@ -8,8 +8,7 @@
 
 <style>
     .dot {
-        border-style:dotted;
-        
+        border-style: dotted;
     }
 </style>
 @if (todoItems == null)
@@ -22,10 +21,24 @@ else
 
     <div>
         <label for="name">News Name</label>
-        <input id="name" @bind="name" /> <button @onclick="GetNewsAsync">Lookup</button>
+        <input id="name" @bind="name"/> <button @onclick="GetNewsAsync">Lookup</button>
         <p></p>
     </div>
 
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select @bind="filter" class="form-control" id="exampleFormControlSelect1">
+                    @foreach (var item in SourceList())
+                    {
+                        <option>@item</option>
+                    }
+
+                </select>
+            </div>
+        </form>
+    </div>
     <br />
     @if (found)
     {
@@ -34,72 +47,36 @@ else
         @if (todoItems.articles.Count == 0)
         {
 
-
             <p>Nothing found</p>
         }
         else
         {
+            <button @onclick="() => SortDateByDateAscending()"  >Ascending</button>
+            <button @onclick="() => SortDateByDateDescending()">Descending</button>
 
-           
-                
-                   
-                        @*<th>Source</th>*@
-                       @* <th>Author</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Published Date</th>
-                        <th>Content</th>
-                        <th>URL</th>*@
-                 
-               
-                    @foreach (var article in todoItems.articles)
-                    {
-<div class="dot">
-
-
-    <div><h5><strong>Source : </strong> @article.author</h5></div>
-    <div><h5><strong>Publish Date : </strong> @article.publishedAt.ToShortDateString()</h5> </div>
-    <div><h5> <strong>Title :</strong> @article.title</h5></div>
-    <div><h5><strong>Description :</strong> @article.description </h5></div>
-
-    <div><h5><strong>Content : </strong> @article.content</h5></div>
-    <div><h5><strong>Urls : </strong><a href="@article.url">Link to Article</a></h5></div>
-
-</div>
-<br />
-                    }
-            
-
-        }
-           @* @foreach (var article in todoItems.articles)
+            foreach (var article in todoItems.articles)
             {
 
+                        <div class="dot">
+                            <div><h5><strong>Source : </strong> @article.source.name</h5></div>
+                            <div><h5><strong>Author : </strong> @article.author</h5></div>
+                            <div><h5><strong>Publish Date : </strong> @article.publishedAt.ToShortDateString()</h5> </div>
+                            <div><h5> <strong>Title :</strong> @article.title</h5></div>
+                            <div><h5><strong>Description :</strong> @article.description </h5></div>
 
-                <div>
-                    Source : @article.source.name
+                            <div><h5><strong>Content : </strong> @article.content</h5></div>
+                            <div><h5><strong>Urls : </strong><a href="@article.url">Link to Article</a></h5></div>
 
-                </div><div>
-                    Title : @article.title
-
-                </div><div>
-                    URL : @article.url
-
-                </div><div>
-                    URL : @article.publishedAt.ToString();
-
-                </div>  }
-        }*@
-    }
+                        </div>
+                        <br />
+                        }
+                    }
+                }
 }
-
-
-
-
-
-
 @code {
+    private string filter { get; set; }
     private Root todoItems;
-
+    private bool sortAscendingOrDescending;
     private string errormessage;
     private bool found;
 
@@ -125,6 +102,24 @@ else
     protected override async Task OnInitializedAsync()
     {
         await GetNewsAsync();
+    }
+
+
+    public HashSet<String> SourceList()
+    {
+        return todoItems.articles.Select(e => e.source.name).ToHashSet();
+    }
+
+
+
+    public void SortDateByDateAscending()
+    {
+        todoItems.articles = todoItems.articles.OrderBy(e => e.publishedAt).ToList();
+    }
+
+    public void SortDateByDateDescending()
+    {
+        todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
     }
 
 
