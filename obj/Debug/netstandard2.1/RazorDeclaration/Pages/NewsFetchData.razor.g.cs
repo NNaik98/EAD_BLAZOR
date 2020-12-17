@@ -91,10 +91,10 @@ using System.Runtime.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 76 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
+#line 80 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
        
+    private string filter { get; set; }
     private Root todoItems;
-    private bool sortAscendingOrDescending;
     private string errormessage;
     private bool found;
 
@@ -128,7 +128,26 @@ using System.Runtime.Serialization;
         return todoItems.articles.Select(e => e.source.name).ToHashSet();
     }
 
+    public bool filterArticle(Article article ){
 
+        Console.WriteLine(filter);
+
+        if (string.IsNullOrWhiteSpace(filter)) {
+
+            return true;
+
+        }
+
+        if (article.source.name.Equals(filter))
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+  
 
     public void SortDateByDateAscending()
     {
@@ -140,32 +159,16 @@ using System.Runtime.Serialization;
         todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
     }
 
-
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class Source
+    public async Task PressEnter(KeyboardEventArgs e)
     {
-        public string id { get; set; }
-        public string name { get; set; }
+        if (e.Key == "Enter")
+        {
+            await GetNewsAsync();
+        }
     }
 
-    public class Article
-    {
-        public Source source { get; set; }
-        public string author { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public string url { get; set; }
-        public string urlToImage { get; set; }
-        public DateTime publishedAt { get; set; }
-        public string content { get; set; }
-    }
 
-    public class Root
-    {
-        public string status { get; set; }
-        public int totalResults { get; set; }
-        public List<Article> articles { get; set; }
-    }
+   
 
 
 #line default

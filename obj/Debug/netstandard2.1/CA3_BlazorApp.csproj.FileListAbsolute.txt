@@ -719,6 +719,6 @@ N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\CA3_BlazorApp.RazorTargetAsse
 N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\CA3_BlazorApp.csproj.CopyComplete
 N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\CA3_BlazorApp.dll
 N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\CA3_BlazorApp.pdb
-N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\I64ftilKwHFCmF1kfX1RL92PzMxhIpWyfwoLGoGcjUs=.hash
-N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\Wp5Ezp76ws3_idV25F6EfKB18w5N-yn1KzfCM6zwjUU=.hash
-N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\s1x0nYiy9W0OOiQatAQF7crz_znucMUZ-8JexqE-rLo=.hash
+N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\Sg27R6ud0WBEt0yZTZvCWZIu0IacWkG96JpEsQD4YtQ=.hash
+N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\yX4_k7GMXtdhW9YyK_ywu19gJyOMXF0pRceiG8WxbrM=.hash
+N:\College\EAD\EAD_BLAZOR\obj\Debug\netstandard2.1\integrity\z4j5BHMMuheLCU5JJh6mlNHE1EP3uZGNz1JsaVrKTak=.hash
