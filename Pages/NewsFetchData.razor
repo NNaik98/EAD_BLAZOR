@@ -51,38 +51,42 @@ else
         }
         else
         {
+            <div><strong>Total Result : </strong>@query.newsData.totalResults</div>
+
+            <br />
             <button @onclick="() => query.SortDateByDateAscending()">Ascending</button>
             <button @onclick="() => query.SortDateByDateDescending()">Descending</button>
             <br />
-            <br/>
+   
+            <br />
 
             foreach (var article in query.newsData.articles)
             {
                 if (article.filterArticle(query.filter))
                 {
-                <div class="dot">
-                    <div><h5><strong>Source : </strong> @article.source.name</h5></div>
-                    <div><h5><strong>Author : </strong> @article.author</h5></div>
-                    <div><h5><strong>Publish Date : </strong> @article.publishedAt.ToLongDateString()</h5> </div>
-                    <div><h5> <strong>Title :</strong> @article.title</h5></div>
-                    <div><h5><strong>Description :</strong> @article.description </h5></div>
+                    <div class="dot">
+                        <div><h5><strong>Source : </strong> @article.source.name</h5></div>
+                        <div><h5><strong>Author : </strong> @article.author</h5></div>
+                        <div><h5><strong>Publish Date : </strong> @article.publishedAt.ToLongDateString()</h5> </div>
+                        <div><h5> <strong>Title :</strong> @article.title</h5></div>
+                        <div><h5><strong>Description :</strong> @article.description </h5></div>
 
-                    <div><h5><strong>Content : </strong> @article.content</h5></div>
-                    <div><h5><strong>URLs : </strong><a href="@article.url">Link to Article</a></h5></div>
+                        <div><h5><strong>Content : </strong> @article.content</h5></div>
+                        <div><h5><strong>URLs : </strong><a href="@article.url">Link to Article</a></h5></div>
 
-                </div>
-                <br />
-                    }
+                    </div>
+                    <br />
                 }
             }
         }
+    }
 }
 @code {
-   
+
     private string errormessage;
     private bool found;
 
-    NewsQueryData query= new NewsQueryData();
+    NewsQueryData query = new NewsQueryData();
 
     public string name { get; set; } = "sports";
 

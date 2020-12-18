@@ -91,13 +91,13 @@ using System.Runtime.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
+#line 84 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
        
-   
+
     private string errormessage;
     private bool found;
 
-    NewsQueryData query= new NewsQueryData();
+    NewsQueryData query = new NewsQueryData();
 
     public string name { get; set; } = "sports";
 

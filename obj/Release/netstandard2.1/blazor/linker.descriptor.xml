@@ -1,0 +1,5 @@
+﻿<linker>
+  <assembly fullname="CA3_BlazorApp">
+    <type fullname="*" required="true" />
+  </assembly>
+</linker>
