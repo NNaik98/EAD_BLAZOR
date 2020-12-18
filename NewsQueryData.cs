@@ -7,21 +7,21 @@ namespace CA3_BlazorApp
     public class NewsQueryData 
     {
         public string filter { get; set; }
-        public Root todoItems;
+        public Root newsData;
 
         public HashSet<String> SourceList()
         {
-            return todoItems.articles.Select(e => e.source.name).ToHashSet();
+            return newsData.articles.Select(e => e.source.name).ToHashSet();
         }
 
         public void SortDateByDateAscending()
         {
-            todoItems.articles = todoItems.articles.OrderBy(e => e.publishedAt).ToList();
+            newsData.articles = newsData.articles.OrderBy(e => e.publishedAt).ToList();
         }
 
         public void SortDateByDateDescending()
         {
-            todoItems.articles = todoItems.articles.OrderByDescending(e => e.publishedAt).ToList();
+            newsData.articles = newsData.articles.OrderByDescending(e => e.publishedAt).ToList();
         }
 
     }

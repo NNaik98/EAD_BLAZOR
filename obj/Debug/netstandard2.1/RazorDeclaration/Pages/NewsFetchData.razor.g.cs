@@ -108,7 +108,7 @@ using System.Runtime.Serialization;
         {
             string uri = "https://newsapi.org/v2/everything?q=" + name + "&apiKey=f74374b084a74f87a9c6270128e9962e";
 
-            query.todoItems = await Http.GetFromJsonAsync<Root>(uri);
+            query.newsData = await Http.GetFromJsonAsync<Root>(uri);
             found = true;
             errormessage = String.Empty;
         }

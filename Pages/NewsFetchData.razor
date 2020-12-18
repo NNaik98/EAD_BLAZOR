@@ -4,21 +4,21 @@
 
 @using System.Runtime.Serialization;
 
-<h1>News API</h1>
+<h1 style="text-align:center; font-family:cursive; border:dashed;">News API</h1>
 
 <style>
     .dot {
         border-style: dotted;
     }
 </style>
-@if (query.todoItems == null)
+@if (query.newsData == null)
 {
     <p><em>Loading ...</em></p>
 }
 else
 {
     <div>
-        <label for="name">Filter News Channel</label>
+        <label for="name"><strong>Search Types </strong> (Sports,Bitcoin) :</label>
         <input id="name" @bind="name" @onkeyup="@PressEnter" /> <button @onclick="GetNewsAsync">Search</button>
 
     </div>
@@ -26,7 +26,7 @@ else
     <div>
         <form>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Filter Source</label>
+                <label for="exampleFormControlSelect1"><strong>Filter Sources</strong></label>
                 <select @bind="query.filter" class="form-control" id="exampleFormControlSelect1">
                     <option value=" ">All</option>
                     @foreach (var item in query.SourceList())
@@ -44,7 +44,7 @@ else
     {
 
 
-        @if (query.todoItems.articles.Count == 0)
+        @if (query.newsData.articles.Count == 0)
         {
 
             <p>Nothing found</p>
@@ -56,7 +56,7 @@ else
             <br />
             <br/>
 
-            foreach (var article in query.todoItems.articles)
+            foreach (var article in query.newsData.articles)
             {
                 if (article.filterArticle(query.filter))
                 {
@@ -93,7 +93,7 @@ else
         {
             string uri = "https://newsapi.org/v2/everything?q=" + name + "&apiKey=f74374b084a74f87a9c6270128e9962e";
 
-            query.todoItems = await Http.GetFromJsonAsync<Root>(uri);
+            query.newsData = await Http.GetFromJsonAsync<Root>(uri);
             found = true;
             errormessage = String.Empty;
         }
