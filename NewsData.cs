@@ -5,10 +5,6 @@ namespace CA3_BlazorApp
 {
 
 
-    public class dataLogic {
-
-        public void addMmbers() { }
-}
         public class Source
     {
         

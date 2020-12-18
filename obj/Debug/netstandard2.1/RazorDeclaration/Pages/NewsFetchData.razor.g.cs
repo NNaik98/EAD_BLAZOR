@@ -91,7 +91,7 @@ using System.Runtime.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 84 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
+#line 82 "N:\College\EAD\EAD_BLAZOR\Pages\NewsFetchData.razor"
        
 
     private string errormessage;
